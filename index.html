@@ -5,10 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Editor Pro</title>
+    <script src="https://kit.fontawesome.com/315d637db3.js" crossorigin="anonymous"></script>
     <script src='main.js' defer ></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>image editor for professional</header>
+    <content>
+        <section>
+            <div class="menu">
+                <div class="menu__options">
+                    <button class="option-draw">draw</button>
+                    <button class="option-text">text</button>
+                    <button class="option-background">background</button>
+                    <button class="option-save">save</button>
+                </div>
+                <input type="file">
+            </div>
+            <div class="board">
+                <div class="bored__text">text box</div>
+                <div class="bored__background">background box</div>
+                <div class="bored__image">image box</div>
+                <canvas>canvas</canvas>
+            </div>
+        </section>
+        <section>
+            <div class="color">
+                <h1>color</h1>
+                <button class="color-option">red</button>
+                <button class="color-option">blue</button>
+                <button class="color-option">grenn</button>
+                <button class="color-option">eraser</button>
+                <input class="color-option" type="color"></input>
+            </div>
+            <div class="gradient">
+                <h1>gradient</h1>
+                <div class="gradient__direction">
+                    <i class="fas fa-arrow-right direction" data-direction="right"></i>
+                    <i class="fas fa-arrow-down direction" data-direction="down"></i>
+                    <i class="fas fa-arrow-left direction" data-direction="left"></i>
+                    <i class="fas fa-arrow-up direction" data-direction="up"></i>
+                </div>
+                <div class="gradeint__option">
+                    <ol class="option-colors">
+                        <li>
+                            <input type="color">
+                            <i class="far fa-times-circle"></i>
+                        </li>
+                        <li>
+                            <input type="color">
+                            <i class="far fa-times-circle"></i>
+                        </li>
+                    </ol>
+                    <i class="fas fa-plus option-more">add</i>
+                    <button class="option-apply">apply</button>
+                </div>
+            </div>
+            <div class="size">
+                <h1>size</h1>
+                <button class="size-option" data-size="micro"></button>
+                <button class="size-option" data-size="small"></button>
+                <button class="size-option" data-size="medium"></button>
+                <button class="size-option" data-size="large"></button>
+                <button class="size-option" data-size="great"></button>
+            </div>
+            <div class="font">
+                <h1>font</h1>
+                <button class="font-option" data-style="potta">hello</button>
+                <button class="font-option" data-style="lonrina">hello</button>
+                <button class="font-option" data-style="hachi">hello</button>
+                <button class="font-option" data-style="hanalei">hello</button>
+                <button class="font-option" data-style="shadows">hello</button>
+            </div>
+        </section>
+    </content>
 </body>
 </html>
