@@ -12,7 +12,7 @@
 <body>
     <header>image editor for professional</header>
     <content>
-        <section>
+        <section class="main">
             <div class="menu">
                 <div class="menu__options">
                     <button class="option-draw">draw</button>
@@ -20,16 +20,16 @@
                     <button class="option-background">background</button>
                     <button class="option-save">save</button>
                 </div>
-                <input type="file">
+                <input type="file" class="menu__image">
             </div>
             <div class="board">
-                <div class="bored__text">text box</div>
-                <div class="bored__background">background box</div>
-                <div class="bored__image">image box</div>
-                <canvas>canvas</canvas>
+                <div class="board__text">text box</div>
+                <div class="board__background">background box</div>
+                <div class="board__image">image box</div>
+                <canvas class="board__canvas">canvas</canvas>
             </div>
         </section>
-        <section>
+        <section class="side">
             <div class="color">
                 <h1>color</h1>
                 <button class="color-option">red</button>
@@ -47,12 +47,12 @@
                     <i class="fas fa-arrow-up direction" data-direction="up"></i>
                 </div>
                 <div class="gradeint__option">
-                    <ol class="option-colors">
-                        <li>
+                    <ol class="option__colors">
+                        <li class="colors-color">
                             <input type="color">
                             <i class="far fa-times-circle"></i>
                         </li>
-                        <li>
+                        <li class="colors-color">
                             <input type="color">
                             <i class="far fa-times-circle"></i>
                         </li>
