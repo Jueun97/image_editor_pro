@@ -13,6 +13,9 @@ body{
     text-align: center;
 
 }
+button{
+    border:0;
+}
 header{
     height: 50px;
     line-height: 50px;
@@ -43,18 +46,49 @@ content{
     display: flex;
     justify-content: center;
 }
-.board__text,.board__background,.board__image,.board__canvas{
+.board__text,.board__background,.board__image{
     position: absolute;
     background-color: khaki;
-    width: 100px;
-    height: 100px;
-    opacity: 0.5;
+    width: 350px;
+    height: 550px;
+}
+.board__canvas{
+    position: absolute;
+    background-color: cadetblue;
+    opacity: 0.3;
 }
 .side{
     flex-basis: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
+}
+.color__colors{
+    width:200px;
+}
+.color-option{
+    width:35px;
+    height: 35px;
+    border-radius: 50%;
+    border:0;
+    margin: 2px 0;
+}
+.color-option[data-color="red"]{
+    background-color: red;
+}
+.color-option[data-color="blue"]{
+    background-color: blue;
+}
+.color-option[data-color="green"]{
+    background-color: green;
+}
+.color-option[data-color="yellow"]{
+    background-color: yellow;
+}
+.color-option[data-color="purple"]{
+    background-color: purple;
+}
+.color-option[data-color="empty"]{
+    background-color: white;
+    border: 1px solid black;
 }
