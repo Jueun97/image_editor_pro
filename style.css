@@ -123,3 +123,49 @@ content{
     border-radius: 20px;
     background-color: rgba(88, 193, 241, 0.473);
 }
+.size-option{
+    border-radius: 50%;
+    background-color: rgba(88, 193, 241, 0.473);
+    margin: 0 3px;
+}
+.size-option[data-size="micro1"]{
+    width: 9px;
+    height: 9px;
+}
+.size-option[data-size="micro2"]{
+    width:11px;
+    height: 11px;
+}
+.size-option[data-size="small1"]{
+    width:13px;
+    height: 13px;
+}
+.size-option[data-size="small2"]{
+    width:15px;
+    height: 15px;
+}
+.size-option[data-size="medium1"]{
+    width: 17px;
+    height: 17px;
+}
+.size-option[data-size="medium2"]{
+    width: 20px;
+    height: 20px;
+}
+.size-option[data-size="large1"]{
+    width:22px;
+    height: 22px;
+}
+.size-option[data-size="large2"]{
+    width: 25px;
+    height: 25px;
+}
+.size-option[data-size="great1"]{
+    width: 30px;
+    height: 30px;
+}
+
+.size-option[data-size="great2"]{
+    width: 32px;
+    height: 32px;
+}
