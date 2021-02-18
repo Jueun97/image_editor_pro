@@ -24,35 +24,56 @@ button{
     border:0;
     background-color: transparent;
 }
+input{
+    outline-style: none;
+}
 header{
     line-height: 50px;
-    border-bottom:2px solid rgb(53, 51, 221);
+    border-bottom:4px solid rgba(88, 193, 241, 0.473);
     height: 5%;
 }
 content{
     display: flex;
-    height: 80%;
+    height: 100%;
 }
 .main{
     flex-basis: 65%;
-    border-right:2px solid rgb(53, 51, 221);
+    border-right:4px solid rgba(88, 193, 241, 0.473);
 }
 .menu{
-    margin: 30px 0;
+    margin-top: 30px;
+    margin-bottom: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+.menu__upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.upload-message{
+    font-size: 2em;
+}
+.upload-image{
+   width: 50%;
+   border-radius: 5px;
+   background-color:  rgba(88, 193, 241, 0.473);
+   color: whitesmoke;
+   padding: 7px;
+   margin-top: 3px;
 }
 .menu__options{
-    
+    display: none;
 }
 .menu-btn{
     border-radius: 5px;
     background-color:  rgba(88, 193, 241, 0.473);
     color: whitesmoke;
-
-}
-.menu__image{
-
+    padding: 7px;
+    font-size: 1em;
 }
 .board{
     display: flex;
@@ -75,8 +96,19 @@ content{
     flex-direction: column;
     align-items: center;
 }
+.color, .gradient, .size, .font{
+    margin: 5px 0;
+    width: 100%;
+}
+.side-title{
+    font-size: 1.9em;
+    background-color: rgba(88, 193, 241, 0.473);
+    width: 100%;
+    border-radius: 10px;
+}
 .color__colors{
     width:200px;
+    margin: auto;
 }
 .color-option{
     width:35px;
@@ -120,12 +152,15 @@ content{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .option-colors{
     margin-bottom: 10px;
+    width: 50%;
 }
 .colors-color > input{
     width: 70%;
+    margin-right: 3px;
 }
 .option-more{
     margin-bottom: 10px;
@@ -135,6 +170,8 @@ content{
     font-size: 1.2em;
     border-radius: 20px;
     background-color: rgba(88, 193, 241, 0.473);
+    width: 30%;
+
 }
 .size-option{
     border-radius: 50%;
@@ -187,10 +224,13 @@ content{
     align-items: center;
 }
 .font__style{
-    width: 80%;
+    width: 70%;
+
 }
 .style-option{
-    font-size: 1.3em;
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 4px;
 }
 .style-option[data-style="Ballet"]{
     font-family: 'Ballet', cursive;
