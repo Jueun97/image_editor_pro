@@ -6,6 +6,7 @@ const menuBar = document.querySelector('.menu__options');
 const textBtn = document.querySelector('.option-text');
 const textContainer = document.querySelector('.board__text');
 let selectedTextBox = null;
+const backgroudBox = document.querySelector('.board__background');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -51,7 +52,9 @@ menuBar.addEventListener('click', (event) => {
 
             break;
         };
-        case 'background':
+        case 'background': {
+            backgroudBox.style.backgroundColor = '#f48fb180';
+        }
             break;;
         default: ;
     }
@@ -92,7 +95,6 @@ canvas.addEventListener('mousemove', (event) => {
         } ;
         case 'erase': {
             context.globalCompositeOperation = 'destination-out';
-      
             prevX = curX;
             prevY = curY;
             curX = coordinateX;
