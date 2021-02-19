@@ -81,14 +81,21 @@ content{
 }
 .board__text,.board__background,.board__image{
     position: absolute;
-    background-color: rgba(88, 193, 241, 0.473);
     width: 350px;
     height: 550px;
+    opacity: 0.3;
 }
 .board__canvas{
     position: absolute;
     background-color: cadetblue;
     opacity: 0.3;
+    z-index: 1;
+}
+.board__text{
+    z-index: 2;
+}
+.text-box{
+    background-color: palevioletred;
 }
 .side{
     flex-basis: 35%;
