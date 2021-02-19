@@ -88,8 +88,22 @@ canvas.addEventListener('mousemove', (event) => {
                 context.lineTo(curX, curY);
                 context.stroke();
             }
+            break;
         } ;
-        case 'erase': ;
+        case 'erase': {
+            context.globalCompositeOperation = 'destination-out';
+      
+            prevX = curX;
+            prevY = curY;
+            curX = coordinateX;
+            curY = coordinateY;
+            context.lineCap = 'round';
+            context.beginPath();
+            context.moveTo(prevX, prevY);
+            context.lineTo(curX, curY);
+            context.stroke();
+            break;
+        };
         case 'text': {
             if (selectedTextBox) {
                 selectedTextBox.style.transform = `translate(${coordinateX}px,${coordinateY}px)`;
