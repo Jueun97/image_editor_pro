@@ -81,25 +81,26 @@ content{
 }
 .board__text{
     position: absolute;
-    background-color: red;
 }
 .board__background,.board__image{
     position: absolute;
     width: 350px;
     height: 550px;
-    opacity: 0.3;
 }
 .board__canvas{
     position: absolute;
-    background-color: cadetblue;
-    opacity: 0.3;
     z-index: 1;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 .board__text{
     z-index: 2;
 }
 .text-box{
-    background-color: palevioletred;
+    background-color: transparent;
+    border: 1px dotted black;
+    outline-color: palevioletred;
+    resize: horizontal;
 }
 .side{
     flex-basis: 35%;

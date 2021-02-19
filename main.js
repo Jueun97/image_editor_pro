@@ -11,9 +11,10 @@ const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 
 let active = null;
+let curX, curY, prevX, prevY = null;
+let drawing = false;
 
 imageFile.addEventListener('change', () => {
-    console.log("hello1");
     const reader = new FileReader();    
     reader.addEventListener('load', () => {
     //console.log(reader.result);
@@ -30,36 +31,64 @@ imageFile.addEventListener('change', () => {
     reader.readAsDataURL(imageFile.files[0])
 })
 
-textBtn.addEventListener('click', () => {
-    const textBox = document.createElement('textarea');
-    textBox.setAttribute('class', 'text-box');
+menuBar.addEventListener('click', (event) => {
+    active = event.target.getAttribute('data-menu');
 
-    textBox.style.position = 'absolute';
-    textBox.style.left = '0';
+    switch (active) {
+        case 'draw': {
+            break;
+        };
+        case 'erase':
+            break;;
+        case 'text': {
+            const textBox = document.createElement('textarea');
+            textBox.setAttribute('class', 'text-box');
 
-    textContainer.append(textBox);
+            textBox.style.position = 'absolute';
+            textBox.style.left = '0';
 
-    active = 'text';
+            textContainer.append(textBox);
+
+            break;
+        };
+        case 'background':
+            break;;
+        default: ;
+    }
+
 })
-
 textContainer.addEventListener('mousedown', (event) => {
     selectedTextBox = event.target;
-    console.log("down", selectedTextBox);
 })
 textContainer.addEventListener('mouseup', (event) => {
     selectedTextBox = null;
-    console.log("up");
 })
 
-canvas.addEventListener('mousedown', () => {
-    console.log('canvas down');
+canvas.addEventListener('mousedown', (event) => {
+    if (active === 'draw') {
+        curX = event.layerX;
+        curY = event.layerY;
+        drawing = true;
+    }
 });
 canvas.addEventListener('mousemove', (event) => {
     let coordinateX = event.layerX;
     let coordinateY = event.layerY;
 
     switch (active) {
-        case 'draw': ;
+        case 'draw': {
+            if (drawing) {
+                prevX = curX;
+                prevY = curY;
+                curX = coordinateX;
+                curY = coordinateY;
+                context.lineCap = 'round';
+                context.beginPath();
+                context.moveTo(prevX, prevY);
+                context.lineTo(curX, curY);
+                context.stroke();
+            }
+        } ;
         case 'erase': ;
         case 'text': {
             if (selectedTextBox) {
@@ -71,5 +100,5 @@ canvas.addEventListener('mousemove', (event) => {
     }
 });
 canvas.addEventListener('mouseup', () => {
-    console.log('canvas up');
+    drawing = false;
 });
