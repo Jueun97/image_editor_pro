@@ -79,7 +79,11 @@ content{
     display: flex;
     justify-content: center;
 }
-.board__text,.board__background,.board__image{
+.board__text{
+    position: absolute;
+    background-color: red;
+}
+.board__background,.board__image{
     position: absolute;
     width: 350px;
     height: 550px;
