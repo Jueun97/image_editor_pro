@@ -78,16 +78,25 @@ content{
 .board{
     display: flex;
     justify-content: center;
+    position: relative;
+    background-color: pink;
 }
 .board__text{
     position: absolute;
 }
-.board__background,.board__image{
+.board__background{
     position: absolute;
     width: 350px;
     height: 550px;
 }
+.board__image{
+    position: absolute;
+    width: 350px;
+    height: 550px;
+
+}
 .board__canvas{
+    display: block;
     position: absolute;
     z-index: 1;
     border: 1px solid black;
