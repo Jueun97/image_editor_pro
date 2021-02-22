@@ -7,6 +7,7 @@ const textBtn = document.querySelector('.option-text');
 const textContainer = document.querySelector('.board__text');
 let selectedTextBox = null;
 const backgroudBox = document.querySelector('.board__background');
+const colorBtn = document.querySelector('.color__colors');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -14,6 +15,7 @@ const context = canvas.getContext('2d');
 let active = null;
 let curX, curY, prevX, prevY = null;
 let drawing = false;
+let color = 'black';
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -118,3 +120,11 @@ canvas.addEventListener('mousemove', (event) => {
 canvas.addEventListener('mouseup', () => {
     drawing = false;
 });
+
+colorBtn.addEventListener('click', (event) => {
+    color = event.target.getAttribute('data-color');
+    if (color) {
+        console.log(color);
+    }
+    
+})
