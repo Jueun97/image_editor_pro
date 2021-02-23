@@ -8,6 +8,7 @@ const textContainer = document.querySelector('.board__text');
 let selectedTextBox = null;
 const backgroudBox = document.querySelector('.board__background');
 const colorBtn = document.querySelector('.color__colors');
+const sizeBtn = document.querySelector('.size');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -16,7 +17,11 @@ let active = null;
 let curX, curY, prevX, prevY = null;
 let drawing = false;
 let textMoving = false;
+let erasing = false;
 let color = 'black';
+let textSize = '';
+let drawSize = '';
+let eraserSize = '';
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -58,11 +63,14 @@ textContainer.addEventListener('mouseup', (event) => {
 })
 
 canvas.addEventListener('mousedown', (event) => {
-    if (active === 'draw') {
+    if (active === 'draw' || active === 'erase' ) {
         curX = event.layerX;
         curY = event.layerY;
         drawing = true;
+        erasing = true;
     }
+
+
 });
 canvas.addEventListener('mousemove', (event) => {
     let coordinateX = event.layerX;
@@ -74,6 +82,7 @@ canvas.addEventListener('mousemove', (event) => {
                 prevY = curY;
                 curX = coordinateX;
                 curY = coordinateY;
+                context.lineWidth = drawSize;
                 context.strokeStyle = color;
                 context.lineCap = 'round';
                 context.beginPath();
@@ -82,22 +91,25 @@ canvas.addEventListener('mousemove', (event) => {
                 context.stroke();
             }
             break;
-        } ;
+        };
         case 'erase': {
-            context.globalCompositeOperation = 'destination-out';
-            prevX = curX;
-            prevY = curY;
-            curX = coordinateX;
-            curY = coordinateY;
-            context.lineCap = 'round';
-            context.beginPath();
-            context.moveTo(prevX, prevY);
-            context.lineTo(curX, curY);
-            context.stroke();
+            if (erasing) {
+                context.globalCompositeOperation = 'destination-out';
+                prevX = curX;
+                prevY = curY;
+                curX = coordinateX;
+                curY = coordinateY;
+                context.lineWidth = eraserSize;
+                context.lineCap = 'round';
+                context.beginPath();
+                context.moveTo(prevX, prevY);
+                context.lineTo(curX, curY);
+                context.stroke();
+            }
             break;
         };
         case 'text': {
-            if(textMoving && selectedTextBox){
+            if (textMoving && selectedTextBox) {
                 selectedTextBox.style.transform = `translate(${coordinateX}px,${coordinateY}px)`;
             }
         };
@@ -107,6 +119,7 @@ canvas.addEventListener('mousemove', (event) => {
 });
 canvas.addEventListener('mouseup', () => {
     drawing = false;
+    erasing = false;
 });
 
 colorBtn.addEventListener('click', (event) => {
@@ -133,4 +146,63 @@ colorBtn.addEventListener('click', (event) => {
         }
     }
     
+});
+
+sizeBtn.addEventListener('click', (event) => {
+    const size = event.target.getAttribute('data-size');
+    switch (size) {
+        case 'micro1':
+            drawSize = 1;
+            eraserSize = 3;
+            textSize = '15px';
+            break;
+        case 'micro2':
+            drawSize = 3;
+            eraserSize = 5;
+            textSize = '20px';
+            break;
+        case 'small1':
+            drawSize = 5;
+            eraserSize = 10;
+            textSize = '25px';
+            break;
+        case 'small2':
+            drawSize = 8;
+            eraserSize = 14;
+            textSize = '30px';
+            break;
+        case 'medium1':
+            drawSize = 10;
+            eraserSize = 17;
+            textSize = '35px';
+            break;
+        case 'medium2':
+            drawSize = 12;
+            eraserSize = 20;
+            textSize = '37px';
+            break;
+        case 'large1':
+            drawSize = 15;
+            eraserSize = 25;
+            textSize = '40px';
+            break;
+        case 'large2':
+            drawSize = 17;
+            eraserSize = 30;
+            textSize = '45px';
+            break;
+        case 'great1':
+            drawSize = 19;
+            eraserSize = 35;
+            textSize = '50px';
+            break;
+        case 'great2':
+            drawSize = 20;
+            eraserSize = 40;
+            textSize = '55px';
+            break;
+        default: break;
+    }
+    if (active === 'text')
+        selectedTextBox.style.fontSize = textSize;
 })
