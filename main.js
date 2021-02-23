@@ -9,6 +9,7 @@ let selectedTextBox = null;
 const backgroudBox = document.querySelector('.board__background');
 const colorBtn = document.querySelector('.color__colors');
 const sizeBtn = document.querySelector('.size');
+const fontBtn = document.querySelector('.font__style');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -205,4 +206,44 @@ sizeBtn.addEventListener('click', (event) => {
     }
     if (active === 'text')
         selectedTextBox.style.fontSize = textSize;
+});
+fontBtn.addEventListener('click', (event) => {
+    const font = event.target.getAttribute('data-style');
+    let fontFamily = null;
+    switch (font) {
+        case 'potta':
+            fontFamily = `'Potta One', cursive`;
+            break;
+        case 'lonrina':
+            fontFamily = `'Londrina Solid', cursive`;
+            break;
+        case 'hachi':
+            fontFamily = `'Hachi Maru Pop', cursive`;
+            break;
+        case 'hanalei':
+            fontFamily = `'Hanalei', cursive`;
+            break;
+        case 'shadows':
+            fontFamily = `'Shadows Into Light', cursive`;
+            break;
+        case 'Ballet':
+            fontFamily = `'Ballet', cursive`;
+            break;
+        case 'Libre':
+            fontFamily = `'Libre Franklin', sans-serif`;
+            break;
+        case 'Long':
+            fontFamily = `'Long Cang', cursive`;
+            break;
+        case 'Reggae':
+            fontFamily = `'Reggae One', cursive`;
+            break;
+
+        case 'Nanum':
+            fontFamily = `'Nanum Myeongjo', serif`;
+            break;
+        default: break;
+    }
+    selectedTextBox.style.fontFamily = fontFamily;
+
 })
