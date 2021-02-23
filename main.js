@@ -15,6 +15,7 @@ const context = canvas.getContext('2d');
 let active = null;
 let curX, curY, prevX, prevY = null;
 let drawing = false;
+let textMoving = false;
 let color = 'black';
 
 imageFile.addEventListener('change', () => {
@@ -37,36 +38,23 @@ imageFile.addEventListener('change', () => {
 menuBar.addEventListener('click', (event) => {
     active = event.target.getAttribute('data-menu');
 
-    switch (active) {
-        case 'draw': {
-            break;
-        };
-        case 'erase':
-            break;;
-        case 'text': {
-            const textBox = document.createElement('textarea');
-            textBox.setAttribute('class', 'text-box');
+    if (active === 'text') {
+        const textBox = document.createElement('textarea');
+        textBox.setAttribute('class', 'text-box');
 
-            textBox.style.position = 'absolute';
-            textBox.style.left = '0';
+        textBox.style.position = 'absolute';
+        textBox.style.left = '0';
 
-            textContainer.append(textBox);
-
-            break;
-        };
-        case 'background': {
-            backgroudBox.style.backgroundColor = '#f48fb180';
-        }
-            break;;
-        default: ;
+        textContainer.append(textBox);
     }
 
 })
 textContainer.addEventListener('mousedown', (event) => {
     selectedTextBox = event.target;
+    textMoving = true;
 })
 textContainer.addEventListener('mouseup', (event) => {
-    selectedTextBox = null;
+    textMoving = false;
 })
 
 canvas.addEventListener('mousedown', (event) => {
@@ -79,7 +67,6 @@ canvas.addEventListener('mousedown', (event) => {
 canvas.addEventListener('mousemove', (event) => {
     let coordinateX = event.layerX;
     let coordinateY = event.layerY;
-
     switch (active) {
         case 'draw': {
             if (drawing) {
@@ -87,6 +74,7 @@ canvas.addEventListener('mousemove', (event) => {
                 prevY = curY;
                 curX = coordinateX;
                 curY = coordinateY;
+                context.strokeStyle = color;
                 context.lineCap = 'round';
                 context.beginPath();
                 context.moveTo(prevX, prevY);
@@ -109,7 +97,7 @@ canvas.addEventListener('mousemove', (event) => {
             break;
         };
         case 'text': {
-            if (selectedTextBox) {
+            if(textMoving && selectedTextBox){
                 selectedTextBox.style.transform = `translate(${coordinateX}px,${coordinateY}px)`;
             }
         };
@@ -124,7 +112,25 @@ canvas.addEventListener('mouseup', () => {
 colorBtn.addEventListener('click', (event) => {
     color = event.target.getAttribute('data-color');
     if (color) {
-        console.log(color);
+        switch (active) {
+            case 'draw': {
+                if (drawing) {
+                    context.strokeStyle = color;
+                }
+                break;
+            };
+            case 'text': {
+                if (selectedTextBox) {
+                    selectedTextBox.style.color = color;
+                }
+                break;
+            };
+            case 'background': {
+                backgroudBox.style.backgroundColor = color;
+                break;
+            };
+            default: ;
+        }
     }
     
 })

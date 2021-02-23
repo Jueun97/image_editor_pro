@@ -79,7 +79,6 @@ content{
     display: flex;
     justify-content: center;
     position: relative;
-    background-color: pink;
 }
 .board__text{
     position: absolute;
@@ -88,6 +87,7 @@ content{
     position: absolute;
     width: 350px;
     height: 550px;
+    opacity: 0.5;
 }
 .board__image{
     position: absolute;
@@ -163,7 +163,6 @@ content{
     margin: 0 10px;
     font-size: 1.2em;
     border-radius: 50%;
-
     width: 35px;
     height: 35px;
     line-height: 35px;
