@@ -13,9 +13,14 @@ const fontBtn = document.querySelector('.font__style');
 const gradientContainer = document.querySelector('.option-colors');
 const gradientAddBtn = document.querySelector('.option-add');
 const gradientRemoveBtn = document.querySelector('.color-remove');
+const gradientApplyBtn = document.querySelector('.option-apply');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
+let grd = null;
+let grdForText = context.createLinearGradient(0, 0, 350, 0);
+let grdForDraw = context.createLinearGradient(0, 0, 350, 0);
+let grdForBackground = context.createLinearGradient(0, 0, 0, 550);
 
 let active = null;
 let curX, curY, prevX, prevY = null;
@@ -258,7 +263,7 @@ gradientAddBtn.addEventListener('click', () => {
         const list = document.createElement('li');
         list.setAttribute('class', 'colors-color');
         list.innerHTML = `
-        <input type="color">
+        <input type="color" class="color-value">
         <i class="far fa-times-circle color-remove"></i>
         `
         gradientContainer.appendChild(list);
@@ -274,11 +279,44 @@ gradientContainer.addEventListener('click', (event) => {
     const target = event.target.parentNode;
     let listCount = gradientContainer.childElementCount;
     
-    if (removeBtn && listCount > 1) {
+    if (removeBtn && listCount > 2) {
         target.remove();
 
         if (--listCount < 3)
-        gradientAddBtn.style.display = 'block';
+            gradientAddBtn.style.display = 'block';
     }
+});
+
+gradientApplyBtn.addEventListener('click', (event) => {
+    const gradientValue = document.querySelectorAll('.color-value');
+    const gradientCount = gradientValue.length;
+
+    switch (gradientCount) {
+        case 2: {
+            if (active === 'text') {
+                grdForText.addColorStop(0, gradientValue[0].value);
+                grdForText.addColorStop(1, gradientValue[1].value);
+                selectedTextBox.style.background = `linear-gradient(to right, ${gradientValue[0].value} 0%, ${gradientValue[1].value} 100%)`;
+                selectedTextBox.style.webkitBackgroundClip = 'text';
+                selectedTextBox.style.webkitTextFillColor = 'transparent';
+                console.log(selectedTextBox);
+            }
+            break;
+        }
+        case 3: {
+            if (active === 'text') {
+                grdForText.addColorStop(0, gradientValue[0].value);
+                grdForText.addColorStop(0.5, gradientValue[1].value);
+                grdForText.addColorStop(1, gradientValue[2].value);
+                selectedTextBox.style.background = `linear-gradient('to right', ${gradientValue[0].value}, ${gradientValue[1].value},  ${gradientValue[2].value})`;
+                selectedTextBox.style.webkitBackgroundClip = 'text';
+                selectedTextBox.style.webkitTextFillColor = 'transparent';
+            }
+            break;
+        }
+    }
+   
+
+    //
 })
 
