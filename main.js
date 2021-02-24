@@ -19,7 +19,7 @@ const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 let grd = null;
 let grdForText = context.createLinearGradient(0, 0, 350, 0);
-let grdForDraw = context.createLinearGradient(0, 0, 350, 0);
+let grdForDraw = context.createLinearGradient(0, 0,350, 550);
 let grdForBackground = context.createLinearGradient(0, 0, 0, 550);
 
 let active = null;
@@ -31,6 +31,7 @@ let color = 'black';
 let textSize = '';
 let drawSize = '';
 let eraserSize = '';
+let isGradient = false;
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -92,7 +93,10 @@ canvas.addEventListener('mousemove', (event) => {
                 curX = coordinateX;
                 curY = coordinateY;
                 context.lineWidth = drawSize;
-                context.strokeStyle = color;
+                if (isGradient)
+                    context.strokeStyle = grdForDraw;
+                else
+                    context.strokeStyle = color;
                 context.lineCap = 'round';
                 context.beginPath();
                 context.moveTo(prevX, prevY);
@@ -132,6 +136,7 @@ canvas.addEventListener('mouseup', () => {
 });
 
 colorBtn.addEventListener('click', (event) => {
+    isGradient = false;
     color = event.target.getAttribute('data-color');
     if (color) {
         switch (active) {
@@ -291,6 +296,7 @@ gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
 
+    isGradient = true;
     switch (gradientCount) {
         case 2: {
             if (active === 'text') {
@@ -300,6 +306,11 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 selectedTextBox.style.webkitBackgroundClip = 'text';
                 selectedTextBox.style.webkitTextFillColor = 'transparent';
                 console.log(selectedTextBox);
+            }
+            else if (active === 'draw') {
+                grdForDraw.addColorStop(0, gradientValue[0].value);
+                grdForDraw.addColorStop(1, gradientValue[1].value);
+                console.log(grdForDraw);
             }
             break;
         }
@@ -311,6 +322,11 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 selectedTextBox.style.background = `linear-gradient('to right', ${gradientValue[0].value}, ${gradientValue[1].value},  ${gradientValue[2].value})`;
                 selectedTextBox.style.webkitBackgroundClip = 'text';
                 selectedTextBox.style.webkitTextFillColor = 'transparent';
+            }
+            else if (active === 'draw') {
+                grdForDraw.addColorStop(0, gradientValue[0].value);
+                grdForDraw.addColorStop(0.5, gradientValue[1].value);
+                grdForDraw.addColorStop(1, gradientValue[2].value);
             }
             break;
         }
