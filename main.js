@@ -10,6 +10,9 @@ const backgroudBox = document.querySelector('.board__background');
 const colorBtn = document.querySelector('.color__colors');
 const sizeBtn = document.querySelector('.size');
 const fontBtn = document.querySelector('.font__style');
+const gradientContainer = document.querySelector('.option-colors');
+const gradientAddBtn = document.querySelector('.option-add');
+const gradientRemoveBtn = document.querySelector('.color-remove');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -247,3 +250,35 @@ fontBtn.addEventListener('click', (event) => {
     selectedTextBox.style.fontFamily = fontFamily;
 
 })
+
+gradientAddBtn.addEventListener('click', () => {
+    const listCount = gradientContainer.childElementCount;
+    
+    if (listCount < 3) {
+        const list = document.createElement('li');
+        list.setAttribute('class', 'colors-color');
+        list.innerHTML = `
+        <input type="color">
+        <i class="far fa-times-circle color-remove"></i>
+        `
+        gradientContainer.appendChild(list);
+
+        if (listCount === 2) {
+            gradientAddBtn.style.display = 'none';
+        }
+    }
+});
+
+gradientContainer.addEventListener('click', (event) => {
+    const removeBtn = event.target.matches('.color-remove');
+    const target = event.target.parentNode;
+    let listCount = gradientContainer.childElementCount;
+    
+    if (removeBtn && listCount > 1) {
+        target.remove();
+
+        if (--listCount < 3)
+        gradientAddBtn.style.display = 'block';
+    }
+})
+
