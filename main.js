@@ -310,8 +310,14 @@ gradientApplyBtn.addEventListener('click', (event) => {
             else if (active === 'draw') {
                 grdForDraw.addColorStop(0, gradientValue[0].value);
                 grdForDraw.addColorStop(1, gradientValue[1].value);
+            }
+            else if (active === 'background') {
+                grdForBackground.addColorStop(0, gradientValue[0].value);
+                grdForBackground.addColorStop(1, gradientValue[1].value);
+                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value}, ${gradientValue[1].value})`;
                 console.log(grdForDraw);
             }
+            
             break;
         }
         case 3: {
@@ -327,6 +333,13 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 grdForDraw.addColorStop(0, gradientValue[0].value);
                 grdForDraw.addColorStop(0.5, gradientValue[1].value);
                 grdForDraw.addColorStop(1, gradientValue[2].value);
+            }
+            else if (active === 'background') {
+                grdForBackground.addColorStop(0, gradientValue[0].value);
+                grdForBackground.addColorStop(0.5, gradientValue[1].value);
+                grdForBackground.addColorStop(1, gradientValue[2].value);
+                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
+                console.log(grdForDraw);
             }
             break;
         }
