@@ -27,11 +27,14 @@ let curX, curY, prevX, prevY = null;
 let drawing = false;
 let textMoving = false;
 let erasing = false;
-let color = 'black';
+let colorForText = 'black';
+let colorForDraw = 'black';
+let colorForBg = 'black';
 let textSize = '';
 let drawSize = '';
 let eraserSize = '';
-let isGradient = false;
+let isGradientForDraw = false;
+let isGradientForBg = false;
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -93,10 +96,10 @@ canvas.addEventListener('mousemove', (event) => {
                 curX = coordinateX;
                 curY = coordinateY;
                 context.lineWidth = drawSize;
-                if (isGradient)
+                if (isGradientForDraw)
                     context.strokeStyle = grdForDraw;
                 else
-                    context.strokeStyle = color;
+                    context.strokeStyle = colorForDraw;
                 context.lineCap = 'round';
                 context.beginPath();
                 context.moveTo(prevX, prevY);
@@ -136,25 +139,28 @@ canvas.addEventListener('mouseup', () => {
 });
 
 colorBtn.addEventListener('click', (event) => {
-    isGradient = false;
-    color = event.target.getAttribute('data-color');
+    const color = event.target.getAttribute('data-color');
+
+    if (active === 'draw')
+        isGradientForDraw = false;
+    else if (active === 'background')
+        isGradientForBg = false;
     if (color) {
         switch (active) {
-            case 'draw': {
-                if (drawing) {
-                    context.strokeStyle = color;
-                }
+            case 'draw': 
+                colorForDraw = color;
                 break;
-            };
             case 'text': {
                 if (selectedTextBox) {
-                    selectedTextBox.style.color = color;
+                    colorForText = color;
+                    selectedTextBox.style.color = colorForText;
                 }
                 break;
             };
             case 'background': {
+                colorForBg = color;
                 backgroudBox.style.background = 'none';
-                backgroudBox.style.backgroundColor = color;
+                backgroudBox.style.backgroundColor = colorForBg;
                 break;
             };
             default: ;
@@ -296,9 +302,13 @@ gradientContainer.addEventListener('click', (event) => {
 gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
+    const opacity = '98';
 
-    isGradient = true;
-    const opacity = '95';
+    if (active === 'draw')
+        isGradientForDraw = true;
+    else if (active === 'background')
+        isGradientForBg = true;
+
     switch (gradientCount) {
         case 2: {
             if (active === 'text') {
