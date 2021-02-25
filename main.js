@@ -153,6 +153,7 @@ colorBtn.addEventListener('click', (event) => {
                 break;
             };
             case 'background': {
+                backgroudBox.style.background = 'none';
                 backgroudBox.style.backgroundColor = color;
                 break;
             };
@@ -297,12 +298,13 @@ gradientApplyBtn.addEventListener('click', (event) => {
     const gradientCount = gradientValue.length;
 
     isGradient = true;
+    const opacity = '95';
     switch (gradientCount) {
         case 2: {
             if (active === 'text') {
                 grdForText.addColorStop(0, gradientValue[0].value);
                 grdForText.addColorStop(1, gradientValue[1].value);
-                selectedTextBox.style.background = `linear-gradient(to right, ${gradientValue[0].value} 0%, ${gradientValue[1].value} 100%)`;
+                selectedTextBox.style.background = `linear-gradient(to right, ${gradientValue[0].value}, ${gradientValue[1].value})`;
                 selectedTextBox.style.webkitBackgroundClip = 'text';
                 selectedTextBox.style.webkitTextFillColor = 'transparent';
                 console.log(selectedTextBox);
@@ -314,7 +316,7 @@ gradientApplyBtn.addEventListener('click', (event) => {
             else if (active === 'background') {
                 grdForBackground.addColorStop(0, gradientValue[0].value);
                 grdForBackground.addColorStop(1, gradientValue[1].value);
-                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value}, ${gradientValue[1].value})`;
+                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value+opacity}, ${gradientValue[1].value+opacity})`;
                 console.log(grdForDraw);
             }
             
@@ -338,7 +340,7 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 grdForBackground.addColorStop(0, gradientValue[0].value);
                 grdForBackground.addColorStop(0.5, gradientValue[1].value);
                 grdForBackground.addColorStop(1, gradientValue[2].value);
-                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
+                backgroudBox.style.background = `linear-gradient(to right, ${gradientValue[0].value+opacity}, ${gradientValue[1].value+opacity},${gradientValue[2].value+opacity})`;
                 console.log(grdForDraw);
             }
             break;
