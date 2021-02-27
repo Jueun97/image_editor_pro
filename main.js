@@ -302,7 +302,7 @@ gradientContainer.addEventListener('click', (event) => {
 gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
-    const opacity = '98';
+    const opacity = '';
 
     if (active === 'draw')
         isGradientForDraw = true;
