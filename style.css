@@ -193,6 +193,17 @@ content{
     width: 30%;
 
 }
+.opacity{
+    margin-top: 13px;
+    width: 100%;
+}
+.opacity__range{
+    width: 50%;
+    -webkit-appearance: none; 
+    background: rgba(88, 193, 241, 0.473);
+    cursor: pointer;
+    border-radius: 10px;
+}
 .size-option{
     border-radius: 50%;
     background-color: rgba(88, 193, 241, 0.473);

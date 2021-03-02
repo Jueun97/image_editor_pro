@@ -15,6 +15,7 @@ const gradientAddBtn = document.querySelector('.option-add');
 const gradientRemoveBtn = document.querySelector('.color-remove');
 const gradientApplyBtn = document.querySelector('.option-apply');
 const gradientDirectionBtn = document.querySelector('.gradient__direction');
+const gradientRangeBar = document.querySelector('.opacity__range');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -395,4 +396,22 @@ gradientDirectionBtn.addEventListener('click', (event) => {
             gradientDirection = '180deg';
     }
     
+})
+
+gradientRangeBar.addEventListener('input', (event) => {
+    const opacity = event.target.value;
+
+    switch (active) {
+        case 'draw':
+            break;
+        case 'text':
+            selectedTextBox.style.opacity = opacity;
+            break;
+        case 'background':
+            backgroudBox.style.opacity = opacity;
+            break;
+        default:
+            break;
+            
+    }
 })
