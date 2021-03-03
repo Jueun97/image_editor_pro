@@ -380,24 +380,37 @@ gradientDirectionBtn.addEventListener('click', (event) => {
     switch (target) {
         case 'right':
             gradientDirection = 'to right';
-            grd = context.createLinearGradient(0, 0, 350, 0);
+            if (active === 'draw')
+                grdForDraw = context.createLinearGradient(0, 0, 350, 0);
+            else
+                grd = context.createLinearGradient(0, 0, 350, 0);
             break;
         case 'down':
             gradientDirection = '180deg';
-            grd = context.createLinearGradient(0, 0, 0, 550);
+            if (active === 'draw')
+                grdForDraw = context.createLinearGradient(0, 0, 0, 550);
+            else
+                grd = context.createLinearGradient(0, 0, 0, 550);
             break;
         case 'left':
             gradientDirection = 'to left';
-            grd = context.createLinearGradient(350, 0, 0, 0);
+            if (active === 'draw')
+                grdForDraw = context.createLinearGradient(350, 0, 0, 0);
+            else
+                grd = context.createLinearGradient(350, 0, 0, 0);
             break;
         case 'up':
             gradientDirection = '0deg';
-            grd = context.createLinearGradient(0, 550, 0, 0);
+            if (active === 'draw')
+                grdForDraw = context.createLinearGradient(0, 550, 0, 0);
+            else
+                grd = context.createLinearGradient(0, 550, 0, 0);
             break;
         default:
             gradientDirection = '180deg';
     }
     
+    console.log(grd);
 })
 
 gradientRangeBar.addEventListener('input', (event) => {
