@@ -88,12 +88,14 @@ canvas.addEventListener('mousedown', (event) => {
 
 
 });
+canvas.toggl
 canvas.addEventListener('mousemove', (event) => {
     let coordinateX = event.layerX;
     let coordinateY = event.layerY;
     switch (active) {
         case 'draw': {
             if (drawing) {
+                context.globalCompositeOperation = 'source-over';
                 prevX = curX;
                 prevY = curY;
                 curX = coordinateX;
