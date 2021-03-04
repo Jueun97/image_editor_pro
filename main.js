@@ -38,6 +38,7 @@ let eraserSize = '';
 let isGradientForDraw = false;
 let isGradientForBg = false;
 let gradientDirection = 'to right';
+let opacityRange = '';
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -307,7 +308,6 @@ gradientContainer.addEventListener('click', (event) => {
 gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
-    const opacity = '';
 
     if (active === 'draw')
         isGradientForDraw = true;
@@ -331,7 +331,7 @@ gradientApplyBtn.addEventListener('click', (event) => {
             else if (active === 'background') {
                 grdForBackground.addColorStop(0, gradientValue[0].value);
                 grdForBackground.addColorStop(1, gradientValue[1].value);
-                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value+opacity}, ${gradientValue[1].value+opacity})`;
+                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})`;
                 console.log(grdForDraw);
             }
             
@@ -355,7 +355,7 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 grdForBackground.addColorStop(0, gradientValue[0].value);
                 grdForBackground.addColorStop(0.5, gradientValue[1].value);
                 grdForBackground.addColorStop(1, gradientValue[2].value);
-                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value+opacity}, ${gradientValue[1].value+opacity},${gradientValue[2].value+opacity})`;
+                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
                 console.log(grdForDraw);
             }
             break;

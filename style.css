@@ -20,6 +20,9 @@ body{
     height: 100%;
     width: 100%;
 }
+h1{
+    margin: 20px 0;
+}
 button{
     border:0;
     background-color: transparent;
@@ -120,6 +123,9 @@ content{
 .color, .gradient, .size, .font{
     margin: 5px 0;
     width: 100%;
+}
+.side-first{
+    margin-top:0;
 }
 .side-title{
     font-size: 1.9em;
@@ -255,8 +261,7 @@ content{
     align-items: center;
 }
 .font__style{
-    width: 70%;
-
+    width: 80%;
 }
 .style-option{
     display: inline-block;
