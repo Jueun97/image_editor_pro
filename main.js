@@ -20,10 +20,10 @@ const gradientRangeBar = document.querySelector('.opacity__range');
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
-let grd = null;
-let grdForText = context.createLinearGradient(0, 0, 350, 0);
-let grdForDraw = context.createLinearGradient(0, 0,350, 550);
-let grdForBackground = context.createLinearGradient(0, 0, 0, 550);
+let grd = context.createLinearGradient(0, 0, 350, 0);
+let grdForText = null;
+let grdForDraw = null;
+let grdForBackground = null;
 
 let active = null;
 let curX, curY, prevX, prevY = null;
@@ -317,63 +317,42 @@ gradientContainer.addEventListener('click', (event) => {
 gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
-    const opacity = '99';
 
-    if (active === 'draw')
-        isGradientForDraw = true;
-    else if (active === 'background')
-        isGradientForBg = true;
-
+    if (active !== 'background') {
+        opacityRange = '';
+    }
     switch (gradientCount) {
         case 2: {
-            if (active === 'text') {
-                grdForText.addColorStop(0, gradientValue[0].value);
-                grdForText.addColorStop(1, gradientValue[1].value);
-                selectedTextBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})`;
-                selectedTextBox.style.webkitBackgroundClip = 'text';
-                selectedTextBox.style.webkitTextFillColor = 'transparent';
-                console.log(selectedTextBox);
-            }
-            else if (active === 'draw') {
-                grdForDraw.addColorStop(0, gradientValue[0].value);
-                grdForDraw.addColorStop(1, gradientValue[1].value);
-            }
-            else if (active === 'background') {
-                grdForBackground.addColorStop(0, gradientValue[0].value+opacityRange);
-                grdForBackground.addColorStop(1, gradientValue[1].value+opacityRange);
-                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})`;
-                console.log(grdForDraw);
-            }
-            
+            grd.addColorStop(0, gradientValue[0].value+opacityRange);
+            grd.addColorStop(1, gradientValue[1].value+opacityRange);
             break;
         }
         case 3: {
-            if (active === 'text') {
-                grdForText.addColorStop(0, gradientValue[0].value);
-                grdForText.addColorStop(0.5, gradientValue[1].value);
-                grdForText.addColorStop(1, gradientValue[2].value);
-                selectedTextBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},  ${gradientValue[2].value})`;
-                selectedTextBox.style.webkitBackgroundClip = 'text';
-                selectedTextBox.style.webkitTextFillColor = 'transparent';
-            }
-            else if (active === 'draw') {
-                grdForDraw.addColorStop(0, gradientValue[0].value);
-                grdForDraw.addColorStop(0.5, gradientValue[1].value);
-                grdForDraw.addColorStop(1, gradientValue[2].value);
-            }
-            else if (active === 'background') {
-                grdForBackground.addColorStop(0, gradientValue[0].value+opacityRange);
-                grdForBackground.addColorStop(0.5, gradientValue[1].value+opacityRange);
-                grdForBackground.addColorStop(1, gradientValue[2].value+opacityRange);
-                backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
-                console.log(grdForDraw);
-            }
+            grd.addColorStop(0, gradientValue[0].value+opacityRange);
+            grd.addColorStop(0.5, gradientValue[1].value+opacityRange);
+            grd.addColorStop(1, gradientValue[2].value+opacityRange);
+           
             break;
         }
     }
-   
 
-    //
+    if (active === 'draw') {
+        isGradientForDraw = true;
+        grdForDraw = grd;
+    }
+    else if (active === 'background') {
+        isGradientForBg = true;
+        grdForBackground = grd
+        backgroudBox.style.background = gradientCount === 2 ? `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})`
+        : `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
+    } else if (active === 'text') {
+        grdForText = grd;
+        selectedTextBox.style.background = gradientCount === 2 ? `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})` 
+        : `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
+        selectedTextBox.style.webkitBackgroundClip = 'text';
+        selectedTextBox.style.webkitTextFillColor = 'transparent';
+    }
+   
 })
 
 gradientDirectionBtn.addEventListener('click', (event) => {
