@@ -77,6 +77,9 @@ menuBar.addEventListener('click', (event) => {
         textOptions.style.display = 'none';
     }
 
+    if (active === 'save')
+        saveCanvas();
+
 })
 textContainer.addEventListener('mousedown', (event) => {
     selectedTextBox = event.target;
@@ -172,7 +175,7 @@ colorBtn.addEventListener('click', (event) => {
             case 'background': {
                 colorForBg = color;
                 backgroudBox.style.background = 'none';
-                backgroudBox.style.backgroundColor = colorForBg;
+                backgroudBox.style.backgroundColor = colorForBg+opacityRange;
                 break;
             };
             default: ;
@@ -314,6 +317,7 @@ gradientContainer.addEventListener('click', (event) => {
 gradientApplyBtn.addEventListener('click', (event) => {
     const gradientValue = document.querySelectorAll('.color-value');
     const gradientCount = gradientValue.length;
+    const opacity = '99';
 
     if (active === 'draw')
         isGradientForDraw = true;
@@ -335,8 +339,8 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 grdForDraw.addColorStop(1, gradientValue[1].value);
             }
             else if (active === 'background') {
-                grdForBackground.addColorStop(0, gradientValue[0].value);
-                grdForBackground.addColorStop(1, gradientValue[1].value);
+                grdForBackground.addColorStop(0, gradientValue[0].value+opacityRange);
+                grdForBackground.addColorStop(1, gradientValue[1].value+opacityRange);
                 backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value})`;
                 console.log(grdForDraw);
             }
@@ -358,9 +362,9 @@ gradientApplyBtn.addEventListener('click', (event) => {
                 grdForDraw.addColorStop(1, gradientValue[2].value);
             }
             else if (active === 'background') {
-                grdForBackground.addColorStop(0, gradientValue[0].value);
-                grdForBackground.addColorStop(0.5, gradientValue[1].value);
-                grdForBackground.addColorStop(1, gradientValue[2].value);
+                grdForBackground.addColorStop(0, gradientValue[0].value+opacityRange);
+                grdForBackground.addColorStop(0.5, gradientValue[1].value+opacityRange);
+                grdForBackground.addColorStop(1, gradientValue[2].value+opacityRange);
                 backgroudBox.style.background = `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
                 console.log(grdForDraw);
             }
@@ -375,45 +379,33 @@ gradientApplyBtn.addEventListener('click', (event) => {
 gradientDirectionBtn.addEventListener('click', (event) => {
     const target = event.target.getAttribute('data-direction');
     
-    if (active === 'text') {
-        grd = grdForText;
-    } else if (active === 'draw') {
-        grd = grdForDraw;
-    } else if (active === 'background') {
-        grd = grdForBackground;
-    }
-
     switch (target) {
         case 'right':
             gradientDirection = 'to right';
-            if (active === 'draw')
-                grdForDraw = context.createLinearGradient(0, 0, 350, 0);
-            else
-                grd = context.createLinearGradient(0, 0, 350, 0);
+            grd = context.createLinearGradient(0, 0, 350, 0);
             break;
         case 'down':
             gradientDirection = '180deg';
-            if (active === 'draw')
-                grdForDraw = context.createLinearGradient(0, 0, 0, 550);
-            else
-                grd = context.createLinearGradient(0, 0, 0, 550);
+            grd = context.createLinearGradient(0, 0, 0, 550);
             break;
         case 'left':
             gradientDirection = 'to left';
-            if (active === 'draw')
-                grdForDraw = context.createLinearGradient(350, 0, 0, 0);
-            else
-                grd = context.createLinearGradient(350, 0, 0, 0);
+            grd = context.createLinearGradient(350, 0, 0, 0);
             break;
         case 'up':
             gradientDirection = '0deg';
-            if (active === 'draw')
-                grdForDraw = context.createLinearGradient(0, 550, 0, 0);
-            else
-                grd = context.createLinearGradient(0, 550, 0, 0);
+            grd = context.createLinearGradient(0, 550, 0, 0);
             break;
         default:
             gradientDirection = '180deg';
+    }
+
+    if (active === 'text') {
+        grd = grdForText;
+    } else if (active === 'draw') {
+        grdForDraw = grd;
+    } else if (active === 'background') {
+        grdForBackground = grd;
     }
     
     console.log(grd);
@@ -421,7 +413,7 @@ gradientDirectionBtn.addEventListener('click', (event) => {
 
 gradientRangeBar.addEventListener('input', (event) => {
     const opacity = event.target.value;
-
+    opacityRange = opacity * 100 + 5;
     switch (active) {
         case 'draw':
             break;
@@ -435,4 +427,27 @@ gradientRangeBar.addEventListener('input', (event) => {
             break;
             
     }
-})
+}) 
+
+function saveCanvas() {
+    //1. text 저장
+    //1.1 text color - color, gradient
+    //1.2 text style
+    //1.3 text size
+    //1.4 text position
+
+    //2. 배경 저장
+    //2.1 background color - color, gradient
+    if (isGradientForBg) {
+        context.fillStyle = grdForBackground;
+    } else {
+        context.fillStyle = colorForBg; 
+    }
+    context.fillRect(0, 0, 350, 550);
+
+    //3. 파일로 저장
+    context.globalCompositeOperation = 'destination-over';
+    context.drawImage(imageBox, 0, 0, 350, 550);
+    let dataUrl = canvas.toDataURL();
+    document.querySelector('.preview').src = dataUrl;
+}
