@@ -4,6 +4,7 @@ const imageFile = document.querySelector('.upload-image');
 const imageBox = document.querySelector('.board__image');
 const menuBar = document.querySelector('.menu__options');
 const textBtn = document.querySelector('.option-text');
+const textOptions = document.querySelector('.text-options');
 const textContainer = document.querySelector('.board__text');
 let selectedTextBox = null;
 const backgroudBox = document.querySelector('.board__background');
@@ -59,8 +60,9 @@ imageFile.addEventListener('change', () => {
 
 menuBar.addEventListener('click', (event) => {
     active = event.target.getAttribute('data-menu');
-
     if (active === 'text') {
+        textOptions.style.display = 'inline-block';
+    } else if (active === 'add') {
         const textBox = document.createElement('textarea');
         textBox.setAttribute('class', 'text-box');
 
@@ -68,6 +70,11 @@ menuBar.addEventListener('click', (event) => {
         textBox.style.left = '0';
 
         textContainer.append(textBox);
+        active = 'text';
+    } else if (active === 'remove') {
+        selectedTextBox.remove();
+    } else {
+        textOptions.style.display = 'none';
     }
 
 })
@@ -89,7 +96,6 @@ canvas.addEventListener('mousedown', (event) => {
 
 
 });
-canvas.toggl
 canvas.addEventListener('mousemove', (event) => {
     let coordinateX = event.layerX;
     let coordinateY = event.layerY;

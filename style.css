@@ -57,6 +57,13 @@ content{
     align-items: center;
     margin-bottom: 10px;
 }
+.text-options{
+    display: none;
+}
+.text-container{
+    display: flex;
+    flex-direction: column;
+}
 .upload-message{
     font-size: 2em;
 }
