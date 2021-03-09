@@ -32,14 +32,17 @@ let textMoving = false;
 let erasing = false;
 let colorForText = 'black';
 let colorForDraw = 'black';
-let colorForBg = 'black';
+let colorForBg = 'transparent';
 let textSize = '';
 let drawSize = '';
 let eraserSize = '';
 let isGradientForDraw = false;
 let isGradientForBg = false;
+let isGradientForText = false;
 let gradientDirection = 'to right';
 let opacityRange = '';
+let textBoxCount = 0;
+let selectedTextBoxStorage = [];
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -65,14 +68,16 @@ menuBar.addEventListener('click', (event) => {
     } else if (active === 'add') {
         const textBox = document.createElement('textarea');
         textBox.setAttribute('class', 'text-box');
-
+        textBox.setAttribute('id', textBoxCount++)
         textBox.style.position = 'absolute';
         textBox.style.left = '0';
 
         textContainer.append(textBox);
         active = 'text';
     } else if (active === 'remove') {
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')] = null;
         selectedTextBox.remove();
+
     } else {
         textOptions.style.display = 'none';
     }
@@ -83,12 +88,31 @@ menuBar.addEventListener('click', (event) => {
 })
 textContainer.addEventListener('mousedown', (event) => {
     selectedTextBox = event.target;
+    if (!selectedTextBoxStorage[selectedTextBox.getAttribute('id')]) {
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')] = {
+            color: 'black',
+            font: 'sans-serif',
+            size: '20px',
+            xPos: '0',
+            yPos: '0',
+            text: '',
+            grdColor1: null,
+            grdColor2: null,
+            grdColor3: null,
+            grdDirection: 'right',
+            isGradient: false
+        }
+        console.log(selectedTextBoxStorage);
+    }
+    
     textMoving = true;
 })
 textContainer.addEventListener('mouseup', (event) => {
     textMoving = false;
 })
-
+textContainer.addEventListener('change', (event) => {
+    selectedTextBoxStorage[selectedTextBox.getAttribute('id')].text = event.target.value;
+})
 canvas.addEventListener('mousedown', (event) => {
     if (active === 'draw' || active === 'erase' ) {
         curX = event.layerX;
@@ -142,6 +166,8 @@ canvas.addEventListener('mousemove', (event) => {
         case 'text': {
             if (textMoving && selectedTextBox) {
                 selectedTextBox.style.transform = `translate(${coordinateX}px,${coordinateY}px)`;
+                selectedTextBoxStorage[selectedTextBox.getAttribute('id')].xPos = coordinateX;
+                selectedTextBoxStorage[selectedTextBox.getAttribute('id')].yPos = coordinateY;
             }
         };
         case 'background': ;
@@ -160,6 +186,9 @@ colorBtn.addEventListener('click', (event) => {
         isGradientForDraw = false;
     else if (active === 'background')
         isGradientForBg = false;
+    else
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].isGradient = false;
+    
     if (color) {
         switch (active) {
             case 'draw': 
@@ -169,6 +198,7 @@ colorBtn.addEventListener('click', (event) => {
                 if (selectedTextBox) {
                     colorForText = color;
                     selectedTextBox.style.color = colorForText;
+                    selectedTextBoxStorage[selectedTextBox.getAttribute('id')].color = colorForText;
                 }
                 break;
             };
@@ -239,8 +269,10 @@ sizeBtn.addEventListener('click', (event) => {
             break;
         default: break;
     }
-    if (active === 'text')
+    if (active === 'text') {
         selectedTextBox.style.fontSize = textSize;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].size = textSize;
+    }
 });
 fontBtn.addEventListener('click', (event) => {
     const font = event.target.getAttribute('data-style');
@@ -280,6 +312,7 @@ fontBtn.addEventListener('click', (event) => {
         default: break;
     }
     selectedTextBox.style.fontFamily = fontFamily;
+    selectedTextBoxStorage[selectedTextBox.getAttribute('id')].font = fontFamily;
 
 })
 
@@ -351,6 +384,12 @@ gradientApplyBtn.addEventListener('click', (event) => {
         : `linear-gradient(${gradientDirection}, ${gradientValue[0].value}, ${gradientValue[1].value},${gradientValue[2].value})`;
         selectedTextBox.style.webkitBackgroundClip = 'text';
         selectedTextBox.style.webkitTextFillColor = 'transparent';
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].isGradient = true;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].gradient = grdForText;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].grdColor1 = gradientValue[0].value + opacityRange;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].grdColor2 = gradientValue[1].value + opacityRange;
+        if(gradientValue[2])
+            selectedTextBoxStorage[selectedTextBox.getAttribute('id')].grdColor3 = gradientValue[2].value + opacityRange;
     }
    
 })
@@ -381,6 +420,8 @@ gradientDirectionBtn.addEventListener('click', (event) => {
 
     if (active === 'text') {
         grd = grdForText;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].grdDirection = target;
+        
     } else if (active === 'draw') {
         grdForDraw = grd;
     } else if (active === 'background') {
@@ -414,6 +455,44 @@ function saveCanvas() {
     //1.2 text style
     //1.3 text size
     //1.4 text position
+    for (let i = 0; i < selectedTextBoxStorage.length; i++) {
+        let item = selectedTextBoxStorage[i];
+        context.font = `${item.size} ${item.font}`;
+        if (item.isGradient) {
+            let saveGrd = null;
+            switch (item.grdDirection) {
+                case 'right':
+                    saveGrd = context.createLinearGradient(0, 0, 350, 0);
+                    console.log("hi");
+                    break;
+                case 'down':
+                    saveGrd = context.createLinearGradient(0, 0, 0, 550);
+                    break;
+                case 'left':
+                    saveGrd = context.createLinearGradient(350, 0, 0, 0);
+                    break;
+                case 'up':
+                    saveGrd = context.createLinearGradient(0, 550, 0, 0);
+                    break;
+                default:
+                    saveGrd = context.createLinearGradient(0, 550, 0, 0);
+            }
+            if (item.grdColor3 === null) {
+                saveGrd.addColorStop(0, item.grdColor1);
+                saveGrd.addColorStop(1, item.grdColor2);
+            } else {
+                saveGrd.addColorStop(0, item.grdColor1);
+                saveGrd.addColorStop(0.5, item.grdColor2);
+                saveGrd.addColorStop(1, item.grdColor3);
+            }
+            context.fillStyle = saveGrd;
+        }
+        else
+            context.fillStyle = `${item.color}`;
+        context.textBaseline = 'hanging';
+        context.fillText(`${item.text}`, `${item.xPos + 3}`, `${item.yPos + 3}`);
+    }
+    textContainer.remove();
 
     //2. 배경 저장
     //2.1 background color - color, gradient
