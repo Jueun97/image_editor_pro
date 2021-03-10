@@ -8,6 +8,7 @@ const textOptions = document.querySelector('.text-options');
 const textContainer = document.querySelector('.board__text');
 let selectedTextBox = null;
 const backgroudBox = document.querySelector('.board__background');
+const sideMenu = document.querySelector('.side');
 const colorBtn = document.querySelector('.color__colors');
 const sizeBtn = document.querySelector('.size');
 const fontBtn = document.querySelector('.font__style');
@@ -17,6 +18,8 @@ const gradientRemoveBtn = document.querySelector('.color-remove');
 const gradientApplyBtn = document.querySelector('.option-apply');
 const gradientDirectionBtn = document.querySelector('.gradient__direction');
 const gradientRangeBar = document.querySelector('.opacity__range');
+const previewBox = document.querySelector('.preview');
+
 
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
@@ -53,8 +56,12 @@ imageFile.addEventListener('change', () => {
     image.addEventListener('load', () => {
         context.drawImage(image, 300,200);
     }) */
+        context.clearRect(0, 0, 350, 550);
         imageBox.src = reader.result;
         menuBar.style.display = 'block';
+        sideMenu.style.display = 'flex';
+        previewBox.style.display = 'none';
+
     })
     const textContainerX = imageBox.getBoundingClientRect().left;
     textContainer.style.left = `${textContainerX}px`;
@@ -450,6 +457,9 @@ gradientRangeBar.addEventListener('input', (event) => {
 }) 
 
 function saveCanvas() {
+    sideMenu.style.display = 'none';
+    menuBar.style.display = 'none';
+    previewBox.style.display = 'block';
     //1. text 저장
     //1.1 text color - color, gradient
     //1.2 text style
@@ -457,40 +467,42 @@ function saveCanvas() {
     //1.4 text position
     for (let i = 0; i < selectedTextBoxStorage.length; i++) {
         let item = selectedTextBoxStorage[i];
-        context.font = `${item.size} ${item.font}`;
-        if (item.isGradient) {
-            let saveGrd = null;
-            switch (item.grdDirection) {
-                case 'right':
-                    saveGrd = context.createLinearGradient(0, 0, 350, 0);
-                    console.log("hi");
-                    break;
-                case 'down':
-                    saveGrd = context.createLinearGradient(0, 0, 0, 550);
-                    break;
-                case 'left':
-                    saveGrd = context.createLinearGradient(350, 0, 0, 0);
-                    break;
-                case 'up':
-                    saveGrd = context.createLinearGradient(0, 550, 0, 0);
-                    break;
-                default:
-                    saveGrd = context.createLinearGradient(0, 550, 0, 0);
+        if (item) {
+            context.font = `${item.size} ${item.font}`;
+            if (item.isGradient) {
+                let saveGrd = null;
+                switch (item.grdDirection) {
+                    case 'right':
+                        saveGrd = context.createLinearGradient(0, 0, 350, 0);
+                        console.log("hi");
+                        break;
+                    case 'down':
+                        saveGrd = context.createLinearGradient(0, 0, 0, 550);
+                        break;
+                    case 'left':
+                        saveGrd = context.createLinearGradient(350, 0, 0, 0);
+                        break;
+                    case 'up':
+                        saveGrd = context.createLinearGradient(0, 550, 0, 0);
+                        break;
+                    default:
+                        saveGrd = context.createLinearGradient(0, 550, 0, 0);
+                }
+                if (item.grdColor3 === null) {
+                    saveGrd.addColorStop(0, item.grdColor1);
+                    saveGrd.addColorStop(1, item.grdColor2);
+                } else {
+                    saveGrd.addColorStop(0, item.grdColor1);
+                    saveGrd.addColorStop(0.5, item.grdColor2);
+                    saveGrd.addColorStop(1, item.grdColor3);
+                }
+                context.fillStyle = saveGrd;
             }
-            if (item.grdColor3 === null) {
-                saveGrd.addColorStop(0, item.grdColor1);
-                saveGrd.addColorStop(1, item.grdColor2);
-            } else {
-                saveGrd.addColorStop(0, item.grdColor1);
-                saveGrd.addColorStop(0.5, item.grdColor2);
-                saveGrd.addColorStop(1, item.grdColor3);
-            }
-            context.fillStyle = saveGrd;
+            else
+                context.fillStyle = `${item.color}`;
+            context.textBaseline = 'hanging';
+            context.fillText(`${item.text}`, `${item.xPos + 3}`, `${item.yPos + 3}`);
         }
-        else
-            context.fillStyle = `${item.color}`;
-        context.textBaseline = 'hanging';
-        context.fillText(`${item.text}`, `${item.xPos + 3}`, `${item.yPos + 3}`);
     }
     textContainer.remove();
 

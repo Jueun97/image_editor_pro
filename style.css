@@ -41,7 +41,6 @@ content{
 }
 .main{
     flex-basis: 65%;
-    border-right:4px solid rgba(88, 193, 241, 0.473);
 }
 .menu{
     margin-top: 30px;
@@ -126,6 +125,7 @@ content{
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left:4px solid rgba(88, 193, 241, 0.473);
 }
 .color, .gradient, .size, .font{
     margin: 5px 0;
@@ -169,8 +169,6 @@ content{
 .color-option[data-color="empty"]{
     background-color: white;
     border: 1px solid black;
-}
-.gradient__direction{
 }
 .direction{
     margin: 0 10px;
@@ -268,7 +266,6 @@ content{
     align-items: center;
 }
 .font__style{
-    width: 80%;
 }
 .style-option{
     display: inline-block;
@@ -304,5 +301,11 @@ content{
 }
 .style-option[data-style="shadows"]{
     font-family: 'Shadows Into Light', cursive;
+}
+
+.preview{
+    border: 1px solid black;
+    height: 70%;
+    align-self: center;
 }
 
