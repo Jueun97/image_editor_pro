@@ -26,6 +26,7 @@ h1{
 button{
     border:0;
     background-color: transparent;
+    outline-style: none;
 }
 input{
     outline-style: none;
@@ -169,6 +170,10 @@ content{
 .color-option[data-color="empty"]{
     background-color: #ffffff;
     border: 1px solid black;
+}
+.color-option:hover .fas{
+    color:red;
+    transform: scale(1.2);
 }
 .direction{
     margin: 0 10px;

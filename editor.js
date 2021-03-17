@@ -19,8 +19,7 @@ const gradientApplyBtn = document.querySelector('.option-apply');
 const gradientDirectionBtn = document.querySelector('.gradient__direction');
 const gradientRangeBar = document.querySelector('.opacity__range');
 const previewBox = document.querySelector('.preview');
-
-
+const pickAColor = document.querySelector('.color-choice');
 const canvas = document.querySelector('canvas');
 const context = canvas.getContext('2d');
 let grd = context.createLinearGradient(0, 0, 350, 0);
@@ -28,7 +27,7 @@ let grdForText = null;
 let grdForDraw = null;
 let grdForBackground = null;
 
-let active = null;
+let active = 'draw';
 let curX, curY, prevX, prevY = null;
 let drawing = false;
 let textMoving = false;
@@ -188,7 +187,14 @@ canvas.addEventListener('mouseup', () => {
 
 colorBtn.addEventListener('click', (event) => {
     const color = event.target.getAttribute('data-color');
-    console.log(color);
+    if (event.target.matches('.fa-minus')){
+        event.target.parentNode.style.backgroundColor = 'white';
+        event.target.parentNode.setAttribute('data-color', 'empty');
+        event.target.parentNode.style.border = '1px solid black';
+        event.target.setAttribute('class', 'fas fa-plus');
+        event.target.style.color = 'black';
+
+    }
     if (active === 'draw')
         isGradientForDraw = false;
     else if (active === 'background')
@@ -196,7 +202,12 @@ colorBtn.addEventListener('click', (event) => {
     else
         selectedTextBoxStorage[selectedTextBox.getAttribute('id')].isGradient = false;
     
-    if (color) {
+    if (color === 'empty') {
+        console.log(event.target);
+        event.target.style.border = '1px dotted black';
+        event.target.classList.add('changing');
+    }
+    else if(color) {
         switch (active) {
             case 'draw': 
                 colorForDraw = color;
@@ -220,7 +231,33 @@ colorBtn.addEventListener('click', (event) => {
     }
     
 });
-
+colorBtn.addEventListener('dblclick', (event) => {
+    console.log(event.target);
+    if (event.target.matches('.fa-plus')) {
+        event.target.parentNode.style.border = '1px dotted black';
+        event.target.parentNode.classList.add('changing');
+        event.target.style.color = 'white';
+        event.target.setAttribute('class', 'fas fa-minus');
+    }
+});
+ 
+pickAColor.addEventListener('change', (event) => {
+    console.log(event.target.value);
+    const emptyColors = document.querySelectorAll('.color-option')
+    
+    emptyColors.forEach((element) => {
+        console.log(element.matches('.changing'));
+        if (element.matches('.changing')) {
+            element.style.backgroundColor = event.target.value;
+            element.style.borderStyle = 'none';
+            element.setAttribute('data-color', event.target.value);
+            element.childNodes[0].style.color = event.target.value;
+            if(element.childNodes[0].matches('.fa-minus'))
+                element.childNodes[0].setAttribute('class', 'fas fa-plus');
+            element.classList.remove('changing');
+        }
+    })
+})
 sizeBtn.addEventListener('click', (event) => {
     const size = event.target.getAttribute('data-size');
     switch (size) {
