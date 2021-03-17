@@ -45,6 +45,9 @@ let gradientDirection = 'to right';
 let opacityRange = '';
 let textBoxCount = 0;
 let selectedTextBoxStorage = [];
+let imageUrl = '';
+
+const address = 'http://localhost:3000/image__process';
 
 imageFile.addEventListener('change', () => {
     const reader = new FileReader();    
@@ -565,4 +568,29 @@ function saveCanvas() {
     let dataUrl = canvas.toDataURL();
     document.querySelector('.preview').style.display = 'flex';
     document.querySelector('.preview-image').src = dataUrl;
+    imageUrl = dataUrl;
 }
+const previewButtons = document.querySelector('.preview-buttons');
+previewButtons.addEventListener('click', (event) => {
+    console.log(">>>",event.target.matches('.use'));
+    if (event.target.matches('.use')) {
+        const check = confirm("편집을 마치시겠습니까?");
+        if (check) {
+            /*  fetch(address, {
+                    method : 'POST',
+                    headers : {
+                        Accept : 'application/json',
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify({ //server.js에 전달할 json 형태
+                        imageUrl
+                    })
+                })  */
+        }
+    } else if (event.target.matches('.undo')) {
+        const check = confirm("다시 편집하시겠습니까?");
+        if(check)
+            location.reload();
+    }
+    
+})
