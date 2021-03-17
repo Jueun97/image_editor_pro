@@ -188,7 +188,7 @@ canvas.addEventListener('mouseup', () => {
 
 colorBtn.addEventListener('click', (event) => {
     const color = event.target.getAttribute('data-color');
-
+    console.log(color);
     if (active === 'draw')
         isGradientForDraw = false;
     else if (active === 'background')
@@ -212,7 +212,7 @@ colorBtn.addEventListener('click', (event) => {
             case 'background': {
                 colorForBg = color;
                 backgroudBox.style.background = 'none';
-                backgroudBox.style.backgroundColor = colorForBg+opacityRange;
+                backgroudBox.style.backgroundColor = colorForBg;
                 break;
             };
             default: ;
@@ -511,7 +511,8 @@ function saveCanvas() {
     if (isGradientForBg) {
         context.fillStyle = grdForBackground;
     } else {
-        context.fillStyle = colorForBg; 
+        context.fillStyle = colorForBg+opacityRange;
+        console.log(colorForBg,opacityRange);
     }
     context.fillRect(0, 0, 350, 550);
 
