@@ -46,6 +46,7 @@ let opacityRange = '';
 let textBoxCount = 0;
 let selectedTextBoxStorage = [];
 let imageUrl = '';
+let clickedMenu = null;
 
 const address = 'http://localhost:3000/image__process';
 
@@ -71,6 +72,17 @@ imageFile.addEventListener('change', () => {
 })
 
 menuBar.addEventListener('click', (event) => {
+    if (clickedMenu === null) {
+        clickedMenu = event.target;
+        clickedMenu.classList.add('clicked');
+    }
+    
+    if (clickedMenu !== event.target) {
+        clickedMenu.classList.remove('clicked');
+        clickedMenu = event.target;
+        clickedMenu.classList.add('clicked');
+    }
+    hilightClickedMenu();
     active = event.target.getAttribute('data-menu');
     if (active === 'text') {
         textOptions.style.display = 'inline-block';
@@ -95,6 +107,16 @@ menuBar.addEventListener('click', (event) => {
         saveCanvas();
 
 })
+function hilightClickedMenu() {
+    const menuButtons = document.querySelectorAll('.menu-btn');
+
+    menuButtons.forEach((element) => {
+        if (element.matches('.clicked'))
+            element.style.backgroundColor = 'pink';
+        else
+            element.style.backgroundColor = ' rgba(88, 193, 241, 0.473)';
+    })
+}
 textContainer.addEventListener('mousedown', (event) => {
     selectedTextBox = event.target;
     if (!selectedTextBoxStorage[selectedTextBox.getAttribute('id')]) {
