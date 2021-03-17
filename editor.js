@@ -186,15 +186,20 @@ canvas.addEventListener('mouseup', () => {
 });
 
 colorBtn.addEventListener('click', (event) => {
-    const color = event.target.getAttribute('data-color');
-    if (event.target.matches('.fa-minus')){
+    let color = null;
+    if (event.target.matches('.fa-minus')) {
         event.target.parentNode.style.backgroundColor = 'white';
         event.target.parentNode.setAttribute('data-color', 'empty');
         event.target.parentNode.style.border = '1px solid black';
         event.target.setAttribute('class', 'fas fa-plus');
         event.target.style.color = 'black';
 
+    } else if (event.target.matches('.fa-plus')) {
+        color = event.target.parentNode.getAttribute('data-color');
+    } else {
+        color = event.target.getAttribute('data-color');
     }
+
     if (active === 'draw')
         isGradientForDraw = false;
     else if (active === 'background')
