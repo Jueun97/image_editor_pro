@@ -1,5 +1,5 @@
 'use strict';
-
+const mainContent = document.querySelector('.main');
 const imageFile = document.querySelector('.upload-image');
 const imageBox = document.querySelector('.board__image');
 const menuBar = document.querySelector('.menu__options');
@@ -499,6 +499,7 @@ gradientRangeBar.addEventListener('input', (event) => {
 }) 
 
 function saveCanvas() {
+    mainContent.style.display = 'none';
     sideMenu.style.display = 'none';
     menuBar.style.display = 'none';
     previewBox.style.display = 'block';
@@ -562,5 +563,6 @@ function saveCanvas() {
     context.globalCompositeOperation = 'destination-over';
     context.drawImage(imageBox, 0, 0, 350, 550);
     let dataUrl = canvas.toDataURL();
-    document.querySelector('.preview').src = dataUrl;
+    document.querySelector('.preview').style.display = 'flex';
+    document.querySelector('.preview-image').src = dataUrl;
 }

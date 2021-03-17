@@ -38,6 +38,7 @@ header{
 }
 content{
     display: flex;
+    justify-content: center;
     height: 100%;
 }
 .main{
@@ -305,10 +306,25 @@ content{
 .style-option[data-style="shadows"]{
     font-family: 'Shadows Into Light', cursive;
 }
-
 .preview{
+    display: none;
+    align-self: center;
+    justify-self: center;
+    flex-direction: column;
+}
+.preview-buttons{
+    display: flex;
+    flex-direction: column;
+}
+.preview-buttons-btn{
+    background-color: rgba(88, 193, 241, 0.473);
+    padding:10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.preview-image{
     border: 1px solid black;
     height: 70%;
-    align-self: center;
+    border-radius: 10px;
 }
 
