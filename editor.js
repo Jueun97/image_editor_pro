@@ -42,6 +42,7 @@ let isGradientForDraw = false;
 let isGradientForBg = false;
 let isGradientForText = false;
 let gradientDirection = 'to right';
+let gradientCheck = 'right';
 let opacityRange = '';
 let textBoxCount = 0;
 let selectedTextBoxStorage = [];
@@ -469,8 +470,10 @@ gradientApplyBtn.addEventListener('click', (event) => {
 })
 
 gradientDirectionBtn.addEventListener('click', (event) => {
-    const target = event.target.getAttribute('data-direction');
-    
+    let target = event.target.getAttribute('data-direction');
+    if (target === null) {
+        target = gradientCheck;
+    }
     switch (target) {
         case 'right':
             gradientDirection = 'to right';
@@ -491,6 +494,7 @@ gradientDirectionBtn.addEventListener('click', (event) => {
         default:
             gradientDirection = '180deg';
     }
+    gradientCheck = target;
 
     if (active === 'text') {
         grd = grdForText;
@@ -500,8 +504,9 @@ gradientDirectionBtn.addEventListener('click', (event) => {
         grdForDraw = grd;
     } else if (active === 'background') {
         grdForBackground = grd;
+
     }
-    
+    gradientApplyBtn.click();
     console.log(grd);
 })
 
@@ -521,6 +526,11 @@ gradientRangeBar.addEventListener('input', (event) => {
             break;
             
     }
+
+    gradientApplyBtn.click();
+    gradientDirectionBtn.click();
+
+
 }) 
 
 function saveCanvas() {
@@ -542,7 +552,6 @@ function saveCanvas() {
                 switch (item.grdDirection) {
                     case 'right':
                         saveGrd = context.createLinearGradient(0, 0, 350, 0);
-                        console.log("hi");
                         break;
                     case 'down':
                         saveGrd = context.createLinearGradient(0, 0, 0, 550);
@@ -573,6 +582,8 @@ function saveCanvas() {
         }
     }
     textContainer.remove();
+
+    context.globalCompositeOperation = 'destination-over';
 
     //2. 배경 저장
     //2.1 background color - color, gradient
