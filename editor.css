@@ -121,6 +121,7 @@ content{
     border: 1px dotted black;
     outline-color: palevioletred;
     resize: horizontal;
+    
 }
 .side{
     flex-basis: 35%;
