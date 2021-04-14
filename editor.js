@@ -12,6 +12,7 @@ const sideMenu = document.querySelector('.side');
 const colorBtn = document.querySelector('.color__colors');
 const sizeBtn = document.querySelector('.size');
 const fontBtn = document.querySelector('.font__style');
+const fontLan = document.querySelector('.font-option');
 const gradientContainer = document.querySelector('.option-colors');
 const gradientAddBtn = document.querySelector('.option-add');
 const gradientRemoveBtn = document.querySelector('.color-remove');
@@ -134,6 +135,7 @@ textContainer.addEventListener('mousedown', (event) => {
         selectedTextBox.disabled = false
     else
         selectedTextBox.disabled = true
+    
     if (selectedTextBox.value === '')
         console.log("hihih")
     if (!selectedTextBoxStorage[selectedTextBox.getAttribute('id')]) {
@@ -365,6 +367,23 @@ sizeBtn.addEventListener('click', (event) => {
         selectedTextBoxStorage[selectedTextBox.getAttribute('id')].size = textSize;
     }
 });
+fontLan.addEventListener('click', (event) => {
+    const language = event.target.getAttribute('data-lan');
+    const fontForEng = document.querySelector('.font-eng');
+    const fontForKr = document.querySelector('.font-kr');
+
+    switch (language) {
+        case 'ENGLISH':
+            fontForEng.style.display = 'block';
+            fontForKr.style.display = 'none';
+            break;
+        case 'KOREAN':
+            fontForEng.style.display = 'none';
+            fontForKr.style.display = 'block';
+            break;
+        default: ;
+    }
+})
 fontBtn.addEventListener('click', (event) => {
     const font = event.target.getAttribute('data-style');
     let fontFamily = null;
