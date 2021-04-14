@@ -253,8 +253,14 @@ colorBtn.addEventListener('click', (event) => {
     
     if (color === 'empty') {
         console.log(event.target);
-        event.target.style.border = '1px dotted black';
-        event.target.classList.add('changing');
+        if (event.target.matches('.fa-plus')) {
+            event.target.parentNode.style.border = '1px dotted black';
+            event.target.parentNode.classList.add('changing');
+        }
+        else {
+            event.target.style.border = '1px dotted black';
+            event.target.classList.add('changing');
+        }
     }
     else if(color) {
         switch (active) {
