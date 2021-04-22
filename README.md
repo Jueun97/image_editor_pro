@@ -29,9 +29,9 @@
 
 ##### 2) text
 * text box 추가 및 삭제 방법
-    ![text](/videos/text.gif)
+    * ![text](/videos/text.gif)
 * text box 예시 (영어, 한국어)
-    ![text_example](/images/text.png)
+    * ![text_example](/images/text.png)
 
 ##### 3) background
     ![background](/images/backgroud.png)
@@ -40,7 +40,7 @@
 #### 2. Decorate Option
 ##### 1) Color
 * color 화면
-    ![color](/images/color1.png)
+    * ![color](/images/color1.png)
 
 * 새로운 색 추가하기
     1. 원을 클린한다.
@@ -56,19 +56,19 @@
 
 ##### 2) Gradient
 * Gradient 화면
-    ![color](/images/gradient.png)
+    * ![color](/images/gradient.png)
 * 색상 고르기 
-    ![color](/images/gradientChooseColor.png)
+    * ![color](/images/gradientChooseColor.png)
 * 그라데이션 방향 설정
     ![color](/images/gradientDirection.png)
     1. to right
-    ![color](/images/gradientToRight.png)
+      ![color](/images/gradientToRight.png)
     2. to down
-    ![color](/images/gradientToDown.png)
+      ![color](/images/gradientToDown.png)
     3. to left
-    ![color](/images/gradientToLeft.png)
+      ![color](/images/gradientToLeft.png)
     4. to up
-    ![color](/images/gradientToUp.png)
+      ![color](/images/gradientToUp.png)
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
         ![color](/images/gradientAdd.png)
@@ -78,15 +78,15 @@
 
 ##### 3) Opacity
 * opacity 화면
-    ![color](/images/opacity.png)
+    * ![color](/images/opacity.png)
 * opacity 조절
-    ![color](/videos/gradientEx.gif)
+    * ![color](/videos/gradientEx.gif)
 
 ##### 4) Size
 * size 화면
-    ![color](/images/size.png)
+    * ![color](/images/size.png)
 
 ##### 5) Font 
 * font 화면 (영어, 한국어폰트 제공)
-    ![color](/videos/font.gif)
+    * ![color](/videos/font.gif)
 
