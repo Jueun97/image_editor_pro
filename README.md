@@ -22,8 +22,27 @@
 ### Preview
 ####1. Decorate Tool
 #####1) brush & erase
+* brush
+<img src="/images/draw.png" alt="color"
+width="200"/>
+* erase
+<img src="/videos/erase.gif" alt="color"
+width="200"/>
 #####2) text
+* text box 추가 및 삭제 방법
+<img src="/videos/text.gif" alt="color"
+width="200"/>
+* text box 예시 (영어, 한국어)
+<img src="/images/text.png" alt="color"
+width="200"/>
 #####3) background
+<div style="display:flex; align-items:center">
+<img src="/images/backgroud.png" alt="color"
+width="200"/>
+<span> => </span>
+<img src="/images/background2.png" alt="color"
+width="200"/>
+</div>
 ####2. Decorate Option
 #####1) Color
 * color 화면
@@ -60,6 +79,18 @@ width="200"/>
 * 그라데이션 방향 설정
 <img src="/images/gradientDirection.png" alt="color" 
 width="200"/>
+    1. to right
+    <img src="/images/gradientToRight.png" alt="color" 
+width="200" height="100"/>
+    2. to down
+     <img src="/images/gradientToDown.png" alt="color" 
+width="200" height="100"/>
+    3. to left
+     <img src="/images/gradientToLeft.png" alt="color" 
+width="200" height="100"/>
+    4. to up
+     <img src="/images/gradientToUp.png" alt="color" 
+width="200" height="100"/>
 <br>
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
