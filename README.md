@@ -20,96 +20,74 @@
 ##### 4. 텍스트 추가하기
 
 ### Preview
-####1. Decorate Tool
-#####1) brush & erase
+#### 1. Decorate Tool
+##### 1) brush & erase
 * brush
-<img src="/images/draw.png" alt="color"
-width="200"/>
+![draw](/images/draw.png)
 * erase
-<img src="/videos/erase.gif" alt="color"
-width="200"/>
-#####2) text
+![erase](/videos/erase.gif)
+
+##### 2) text
 * text box 추가 및 삭제 방법
-<img src="/videos/text.gif" alt="color"
-width="200"/>
+![text](/videos/text.gif)
 * text box 예시 (영어, 한국어)
-<img src="/images/text.png" alt="color"
-width="200"/>
-#####3) background
-<div style="display:flex; align-items:center">
-<img src="/images/backgroud.png" alt="color"
-width="200"/>
-<span> => </span>
-<img src="/images/background2.png" alt="color"
-width="200"/>
-</div>
-####2. Decorate Option
-#####1) Color
+![text_example](/images/text.png)
+
+##### 3) background
+![background](/images/backgroud.png)
+![background](/images/background2.png)
+
+#### 2. Decorate Option
+##### 1) Color
 * color 화면
-<img src="/images/color1.png" alt="color"
-width="300" height="150"/>
-<br>
+![color](/images/color1.png)
+
 * 새로운 색 추가하기
     1. 원을 클린한다.
-<img src="/images/colorChanging.png" alt="color"  
-width="200"/>
-<br>
+    ![color](/images/colorChanging.png)
     2. 새로운 색을 선택한다.
-<img src="/images/colorChanging2.png" alt="color" 
-width="200"/>
-<br>
+    ![color](/images/colorChanging2.png)
+
 * 추가한 색상 지우기 
     1. 지우고 싶은 색을 더블클릭 후 - 버튼을 클릭한다.
-<img src="/images/colorDeleting.png" alt="color"  
-width="200"/>
-<br>
-    2. 삭제완료
-<img src="/images/colorDeleting2.png" alt="color" 
-width="200"/>
+    ![color](/images/colorDeleting.png)
 
-#####2) Gradient
+    2. 삭제완료
+    ![color](/images/colorDeleting2.png)
+
+##### 2) Gradient
 * Gradient 화면
-<img src="/images/gradient.png" alt="color" 
-width="300" height="150"/>
-<br>
+    ![color](/images/gradient.png)
 * 색상 고르기 
-<img src="/images/gradientChooseColor.png" alt="color" 
-width="200"/>
-<br>
+    ![color](/images/gradientChooseColor.png)
 * 그라데이션 방향 설정
-<img src="/images/gradientDirection.png" alt="color" 
-width="200"/>
+    ![color](/images/gradientDirection.png)
     1. to right
-    <img src="/images/gradientToRight.png" alt="color" 
-width="200" height="100"/>
+    ![color](/images/gradientToRight.png)
     2. to down
-     <img src="/images/gradientToDown.png" alt="color" 
-width="200" height="100"/>
+    ![color](/images/gradientToDown.png)
     3. to left
-     <img src="/images/gradientToLeft.png" alt="color" 
-width="200" height="100"/>
+    ![color](/images/gradientToLeft.png)
     4. to up
-     <img src="/images/gradientToUp.png" alt="color" 
-width="200" height="100"/>
-<br>
+    ![color](/images/gradientToUp.png)
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
-<img src="/images/gradientAdd.png" alt="color" 
-width="200"/>
+    ![color](/images/gradientAdd.png)
+
     2. 우측(x)버튼 클릭 시 색상 삭제
-<img src="/images/gradientDelete.png" alt="color" 
-width="200"/>
-#####3) Opacity
+    ![color](/images/gradientDelete.png)
+
+##### 3) Opacity
 * opacity 화면
-<img src="/images/opacity.png" alt="color" 
-width="250" height="100"/>
+![color](/images/opacity.png)
 * opacity 조절
-<img src="/videos/gradientEx.gif" width="200">
-#####4) Size
+![color](/videos/gradientEx.gif)
+
+##### 4) Size
 * size 화면
-<img src="/images/size.png" alt="color" 
-width="250" height="100"/>
-#####5) Font 
+![color](/images/size.png)
+
+##### 5) Font 
 * font 화면 (영어, 한국어폰트 제공)
-<img src="/videos/font.gif" alt="color" 
-width="200"/>
+![color](/videos/font.gif)
+
