@@ -11,7 +11,7 @@ const backgroudBox = document.querySelector('.board__background');
 const sideMenu = document.querySelector('.side');
 const colorBtn = document.querySelector('.color__colors');
 const sizeBtn = document.querySelector('.size');
-const fontBtn = document.querySelector('.font__style');
+const fontBtn = document.querySelector('.font');
 const fontLan = document.querySelector('.font-option');
 const gradientContainer = document.querySelector('.option-colors');
 const gradientAddBtn = document.querySelector('.option-add');
@@ -215,7 +215,7 @@ canvas.addEventListener('mousemove', (event) => {
         };
         case 'text': {
             if (textMoving && selectedTextBox) {
-                selectedTextBox.style.transform = `translate(${coordinateX}px,${coordinateY}px)`;
+                selectedTextBox.style.transform = `translate(${coordinateX-4}px,${coordinateY-2}px)`;
                 selectedTextBoxStorage[selectedTextBox.getAttribute('id')].xPos = coordinateX;
                 selectedTextBoxStorage[selectedTextBox.getAttribute('id')].yPos = coordinateY;
             }
@@ -393,6 +393,7 @@ fontLan.addEventListener('click', (event) => {
 fontBtn.addEventListener('click', (event) => {
     const font = event.target.getAttribute('data-style');
     let fontFamily = null;
+    
     switch (font) {
         case 'potta':
             fontFamily = `'Potta One', cursive`;
@@ -420,15 +421,46 @@ fontBtn.addEventListener('click', (event) => {
             break;
         case 'Reggae':
             fontFamily = `'Reggae One', cursive`;
-            break;
-
+            b
         case 'Nanum':
             fontFamily = `'Nanum Myeongjo', serif`;
             break;
+        case 'sunflower':
+            fontFamily = `'Sunflower', sans-serif`;
+            break;
+        case 'stylish':
+            fontFamily = `'Stylish', sans-serif`;
+            break;
+        case 'single':
+            fontFamily = `'Single Day', cursive`;
+            break;
+        case 'lonrina':
+            fontFamily = `'Londrina Solid', cursive`;
+            break;
+        case 'gothic':
+            fontFamily = `'Nanum Gothic', sans-serif`;
+            break;
+        case 'brush':
+            fontFamily = `'Nanum Brush Script', cursive`;
+            break;
+        case 'melody':
+            fontFamily = `''Hi Melody', cursive`;
+            break;
+        case 'gugi':
+            fontFamily = `'Gugi', cursive`;
+            break;
+        case 'dokdo':
+            fontFamily = `'Dokdo', cursive`;
+            break;
+        case 'picture':
+            fontFamily = `'Black And White Picture', sans-serif`;
+            break;
         default: break;
     }
-    selectedTextBox.style.fontFamily = fontFamily;
-    selectedTextBoxStorage[selectedTextBox.getAttribute('id')].font = fontFamily;
+    if (font) {
+        selectedTextBox.style.fontFamily = fontFamily;
+        selectedTextBoxStorage[selectedTextBox.getAttribute('id')].font = fontFamily;
+    }
 
 })
 
