@@ -60,21 +60,21 @@
 * 색상 고르기 
     * ![color](/images/gradientChooseColor.png)
 * 그라데이션 방향 설정
-    ![color](/images/gradientDirection.png)
+    * ![color](/images/gradientDirection.png)
     1. to right
-      ![color](/images/gradientToRight.png)
+      * ![color](/images/gradientToRight.png)
     2. to down
-      ![color](/images/gradientToDown.png)
+      * ![color](/images/gradientToDown.png)
     3. to left
-      ![color](/images/gradientToLeft.png)
+      * ![color](/images/gradientToLeft.png)
     4. to up
-      ![color](/images/gradientToUp.png)
+      * ![color](/images/gradientToUp.png)
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
-        ![color](/images/gradientAdd.png)
+        * ![color](/images/gradientAdd.png)
 
     2. 우측(x)버튼 클릭 시 색상 삭제
-        ![color](/images/gradientDelete.png)
+        * ![color](/images/gradientDelete.png)
 
 ##### 3) Opacity
 * opacity 화면
