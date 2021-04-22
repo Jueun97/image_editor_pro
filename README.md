@@ -34,8 +34,8 @@
     * ![text_example](/images/text.png)
 
 ##### 3) background
-    ![background](/images/backgroud.png)
-    ![background](/images/background2.png)
+![background](/images/backgroud.png)
+![background](/images/background2.png)
 
 #### 2. Decorate Option
 ##### 1) Color
@@ -44,15 +44,15 @@
 
 * 새로운 색 추가하기
     1. 원을 클린한다.
-        ![color](/images/colorChanging.png)
+        * ![color](/images/colorChanging.png)
     2. 새로운 색을 선택한다.
-        ![color](/images/colorChanging2.png)
+        * ![color](/images/colorChanging2.png)
     
 * 추가한 색상 지우기 
     1. 지우고 싶은 색을 더블클릭 후 - 버튼을 클릭한다.
-        ![color](/images/colorDeleting.png)
+        * ![color](/images/colorDeleting.png)
     2. 삭제완료
-        ![color](/images/colorDeleting2.png)
+        * ![color](/images/colorDeleting2.png)
 
 ##### 2) Gradient
 * Gradient 화면
