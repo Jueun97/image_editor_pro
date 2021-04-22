@@ -23,8 +23,7 @@
 #### 1. Decorate Tool
 ##### 1) brush & erase
 * brush
-<img src="/images/draw.png" alt="color" 
-width="200"/>
+![brush](/images/draw.png)
 * erase
 ![erase](/videos/erase.gif)
 
