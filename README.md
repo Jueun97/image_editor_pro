@@ -23,7 +23,8 @@
 #### 1. Decorate Tool
 ##### 1) brush & erase
 * brush
-![draw](/images/draw.png)
+<img src="/images/draw.png" alt="color" 
+width="200"/>
 * erase
 ![erase](/videos/erase.gif)
 
@@ -51,6 +52,7 @@
 * 추가한 색상 지우기 
     1. 지우고 싶은 색을 더블클릭 후 - 버튼을 클릭한다.
     ![color](/images/colorDeleting.png)
+    
 
     2. 삭제완료
     ![color](/images/colorDeleting2.png)
