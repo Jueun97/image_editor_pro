@@ -23,7 +23,7 @@
 #### 1. Decorate Tool
 ##### 1) brush & erase
 * brush
-![draw](/images/draw.png)
+<img src="/images/draw.png" width="200">
 * erase
 ![erase](/videos/erase.gif)
 
@@ -61,33 +61,33 @@
 * 색상 고르기 
     ![color](/images/gradientChooseColor.png)
 * 그라데이션 방향 설정
-    ![color](/images/gradientDirection.png)
+    <img src="/images/gradientDirection.png" width="200">
     1. to right
-    ![color](/images/gradientToRight.png)
+    <img src="/images/gradientToRight.png" width="200">
     2. to down
-    ![color](/images/gradientToDown.png)
+    <img src="/images/gradientToDown.png" width="200">
     3. to left
-    ![color](/images/gradientToLeft.png)
+    <img src="/images/gradientToLeft.png" width="200">
     4. to up
-    ![color](/images/gradientToUp.png)
+    <img src="/images/gradientToUp.png" width="200">
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
-    ![color](/images/gradientAdd.png)
-
+      <img src="/images/gradientAdd.png" width="200">
+    
     2. 우측(x)버튼 클릭 시 색상 삭제
-    ![color](/images/gradientDelete.png)
+    <img src="/images/gradientDelete.png" width="200">
 
 ##### 3) Opacity
 * opacity 화면
-![color](/images/opacity.png)
+<img src="/images/opacity.png" width="200">
 * opacity 조절
-![color](/videos/gradientEx.gif)
-
+<img src="/videos/gradientEx.gif" width="200">
 ##### 4) Size
 * size 화면
-![color](/images/size.png)
-
+<img src="/images/size.png" width="200">
 ##### 5) Font 
 * font 화면 (영어, 한국어폰트 제공)
-![color](/videos/font.gif)
+<img src="/videos/font.gif" width="200">
+
+
 
