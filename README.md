@@ -58,27 +58,25 @@
 
 #### 2) Gradient
 * Gradient 화면
-     <img src="/images/gradient.png" width="200">
+<img src="/images/gradient.png" width="200">
 * 색상 고르기 
-    <img src="/images/gradientChooseColor.png" width="200">
+<img src="/images/gradientChooseColor.png" width="200">
 * 그라데이션 방향 설정
     <img src="/images/gradientDirection.png" width="200">
-    
-    1. to right
-    <img src="/images/gradientToRight.png" width="200">
-    
-    2. to down
-    <img src="/images/gradientToDown.png" width="200">
-    
-    3. to left
-    <img src="/images/gradientToLeft.png" width="200">
-    
-    4. to up
-    <img src="/images/gradientToUp.png" width="200">
+        <div>
+        1. to right
+        <img src="/images/gradientToRight.png" width="200">
+        2. to down
+        <img src="/images/gradientToDown.png" width="200">
+        3. to left
+        <img src="/images/gradientToLeft.png" width="200">
+        4. to up
+        <img src="/images/gradientToUp.png" width="200">
+        </div>
     
 * 색상 추가 및 삭제
     1. <+> 버튼 클릭 시 색상 추가 가능
-      <img src="/images/gradientAdd.png" width="200">
+    <img src="/images/gradientAdd.png" width="200">  
     
     2. 우측(x)버튼 클릭 시 색상 삭제
     <img src="/images/gradientDelete.png" width="200">
