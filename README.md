@@ -88,5 +88,5 @@
 
 #### 5) Font 
 * font 화면 (영어, 한국어폰트 제공)
-    <img src="/videos/font.gif" width="200">
+<img src="/videos/font.gif" width="200">
 
