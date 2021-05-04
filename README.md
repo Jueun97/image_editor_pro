@@ -22,13 +22,13 @@
 # Preview
 ## 1. 메인화면
 <p align="center">
-  <img src="/images/메인화면.png" width="50%">
+  <img src="/images/메인화면.png" width="70%">
 </p>
 
 ## 2. 메뉴
 ### * 이미지 업로드 후 메뉴에서 원하는 작업 선택 가능
 <p align="center">
-  <img src="/images/이미지업로드.png" width="50%">
+  <img src="/images/이미지업로드.png" width="70%">
 </p>
 
 ## 3. 데코레이션 툴
