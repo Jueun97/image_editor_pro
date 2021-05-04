@@ -21,19 +21,20 @@
 
 # Preview
 ## 1. 메인화면
-<div style="text-align:center">
+<p align="center">
   <img src="/images/메인화면.png" width="50%">
-</div>
+</p>
 
 ## 2. 메뉴
 ### * 이미지 업로드 후 메뉴에서 원하는 작업 선택 가능
-<div style="text-align:center">
+<p align="center">
   <img src="/images/이미지업로드.png" width="50%">
-</div>
+</p>
 
 ## 3. 데코레이션 툴
 ### * 원하는 작업 선택 후 적용 가능
-<div style="text-align:center">
+<p align="center">
   <img src="/videos/툴.gif" width="250">
-</div>
+</p>
+
 
