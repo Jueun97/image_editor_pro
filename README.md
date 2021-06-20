@@ -18,6 +18,7 @@
 - 그라데이션 효과 (색, 방향 조절 가능)
 - 투명도 조절 가능 
 ## 4. 텍스트 추가하기
+<<<<<<< HEAD
 
 # Preview
 ## 1. 메인화면
@@ -34,4 +35,25 @@
 <div style="text-align:center">
 <img src="/videos/툴.gif">
 </div>
+=======
+
+# Preview
+## 1. 메인화면
+<p align="center">
+  <img src="/images/메인화면.png" width="70%">
+</p>
+
+## 2. 메뉴
+### * 이미지 업로드 후 메뉴에서 원하는 작업 선택 가능
+<p align="center">
+  <img src="/images/이미지업로드.png" width="70%">
+</p>
+
+## 3. 데코레이션 툴
+### * 원하는 작업 선택 후 적용 가능
+<p align="center">
+  <img src="/videos/툴.gif" width="250">
+</p>
+
+>>>>>>> f3223cbe24c7e5820fd5329c0322cb8444b44dc9
 
